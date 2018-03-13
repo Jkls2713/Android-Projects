@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.jon_kylesmith.weatherapp.MainActivity">
+
+
+    <EditText
+        android:id="@+id/editCity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:ems="10"
+        android:hint="Enter name of City"
+        android:inputType="textPersonName" />
+
+    <EditText
+        android:id="@+id/editCountry"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/editCity"
+        android:layout_centerHorizontal="true"
+        android:ems="10"
+        android:hint="Enter name of Country"
+        android:inputType="textPersonName" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/editCountry"
+        android:layout_centerHorizontal="true"
+        android:onClick="onClick"
+        android:text="Weather Report" />
+
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/button">
+
+        <EditText
+            android:id="@+id/editForecast"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Weather Forecast"
+            android:inputType="textPersonName" />
+
+        <EditText
+            android:id="@+id/editDetail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_column="0"
+            android:layout_row="1"
+            android:ems="10"
+            android:hint="Detailed Description"
+            android:inputType="textPersonName" />
+
+        <EditText
+            android:id="@+id/editTemp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_column="0"
+            android:layout_row="2"
+            android:ems="10"
+            android:hint="Temperature"
+            android:inputType="textPersonName" />
+
+        <EditText
+            android:id="@+id/editMax"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_column="0"
+            android:layout_row="3"
+            android:ems="10"
+            android:hint="Max Temperature"
+            android:inputType="textPersonName" />
+
+        <EditText
+            android:id="@+id/editMin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_column="0"
+            android:layout_row="4"
+            android:ems="10"
+            android:hint="Min Temperature"
+            android:inputType="textPersonName" />
+
+        <EditText
+            android:id="@+id/editHumidity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_column="0"
+            android:layout_row="5"
+            android:ems="10"
+            android:hint="Humidity"
+            android:inputType="textPersonName" />
+
+        <EditText
+            android:id="@+id/editWind"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_column="0"
+            android:layout_row="6"
+            android:ems="10"
+            android:hint="Wind Speed"
+            android:inputType="textPersonName" />
+
+
+    </GridLayout>
+</RelativeLayout>
