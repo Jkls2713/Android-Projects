@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -20,7 +21,7 @@ import java.net.URL;
 import java.util.concurrent.ExecutionException;
 
 public class MainActivity extends AppCompatActivity {
-    DownloadTask task = new DownloadTask();
+    DownloadTask task ;
     String mainInfo;
     JSONArray others;
     JSONObject other;
@@ -33,41 +34,55 @@ public class MainActivity extends AppCompatActivity {
     EditText windspeed;
     String mainForecast;
     String detailedForecast;
-
-    /*TODO: // test the retrieval of other info
-      TODO: // Retrieve Forecast and detailed 
+    EditText editForecast;
+    EditText editDetailed;
+    EditText editCity;
+    EditText editCountry;
+    /*TODO: // change results to regular Textviews and not Editviews
      */
 
 
     public void onClick(View view){
-        EditText editForecast = (EditText)findViewById(R.id.editForecast);
-        EditText editDetailed = (EditText)findViewById(R.id.editDetail);
-        EditText editCity = (EditText)findViewById(R.id.editCity);
+
+        task  = new DownloadTask();
         String city = editCity.getText().toString();
-        EditText editCountry = (EditText)findViewById(R.id.editCountry);
         String country = editCountry.getText().toString();
         String loc = city + "," + country;
         String weatherURL = "http://api.openweathermap.org/data/2.5/weather?q=";
         String appID = "&appid=9f552dfe6b3b3231a46bb5a893b8d78f";
         try {
+            //TODO: handle thread background thread to get info back to main thread
             task.execute(weatherURL+loc+appID);
-            others = new JSONArray(mainInfo);
-            other = others.getJSONObject(0);
-            String tem = other.getString(("temp"));
-            Log.i("Info", "");
-            editForecast.setText(mainForecast);
-            editDetailed.setText(detailedForecast);
+            //
 
         }catch (Exception e){
-
+            Log.i("Errorss", "onClick: ");
+            e.printStackTrace();
         }
 
+    }
+
+    public String convertTemp(String Ktemp){
+
+       Double number = Double.parseDouble(Ktemp);
+
+       number = (number - 273)*(9/5);
+       number += 32;
+       return Double.toString(number);
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        temp = (EditText)findViewById(R.id.editTemp);
+        humidity = (EditText)findViewById(R.id.editHumidity);
+        minTemp = (EditText)findViewById(R.id.editMin);
+        maxTemp = (EditText)findViewById(R.id.editMax);
+        editForecast = (EditText)findViewById(R.id.editForecast);
+        editDetailed = (EditText)findViewById(R.id.editDetail);
+        editCity = (EditText)findViewById(R.id.editCity);
+         editCountry = (EditText)findViewById(R.id.editCountry);
 
 
 
@@ -170,8 +185,26 @@ public class DownloadTask extends AsyncTask<String, Void, String> {
                 }
 
                 mainInfo = jsonObject.getString("main");
+
                 Log.i("Other content", mainInfo);
 
+                String [] otherInfo = mainInfo.split("[:,}]");
+                Log.i("Test Split", otherInfo[0]);
+                Log.i("Test Split", otherInfo[1]);
+                Log.i("Test Split", otherInfo[2]);
+                Log.i("Test Split", otherInfo[3]);
+                Log.i("Test Split", otherInfo[4]);
+                Log.i("Test Split", otherInfo[5]);
+                editForecast.setText(mainForecast, TextView.BufferType.EDITABLE);
+                editDetailed.setText(detailedForecast);
+
+                String F_temp = convertTemp(otherInfo[1]);
+                temp.setText(F_temp + " degrees");
+                humidity.setText(otherInfo[5]);
+                String Fmin = convertTemp(otherInfo[7]);
+                String Fmax = convertTemp(otherInfo[9]);
+                minTemp.setText(Fmin + " degrees");
+                maxTemp.setText(Fmax + " degrees");
 
             } catch (JSONException e) {
                 e.printStackTrace();
