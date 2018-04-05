@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -37,7 +36,7 @@
             android:layout_columnWeight="1"
             android:layout_row="0"
             android:gravity="center"
-            android:text="Reading: N/A" />
+            android:text="@string/reading_na" />
 
         <TextView
             android:id="@+id/mathTextView"
@@ -47,8 +46,7 @@
             android:layout_columnWeight="1"
             android:layout_row="0"
             android:gravity="center"
-
-            android:text="Math: N/A" />
+            android:text="@string/math_na" />
 
         <TextView
             android:id="@+id/writingTextView"
@@ -58,7 +56,7 @@
             android:layout_columnWeight="1"
             android:layout_row="0"
             android:gravity="center"
-            android:text="Writing: N/A" />
+            android:text="@string/writing_na" />
     </GridLayout>
 
 </RelativeLayout>

@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">NYC Schools</string>
+    <string name="math_na">Math: N/A</string>
+    <string name="reading_na">Reading: N/A</string>
+    <string name="writing_na">Writing: N/A</string>
 </resources>
